@@ -1,5 +1,5 @@
 # dc-controls
-  some builtin controls and directives for domcom
+  some controls and directives for domcom
 
   accordion, autoWidthEdit, blink, combo, dialog, splitter, triangle
 

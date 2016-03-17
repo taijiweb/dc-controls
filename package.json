@@ -1,7 +1,7 @@
 {
   "name": "dc-controls",
   "version": "0.0.1",
-  "description": "some builtin controls and directives for domcom",
+  "description": "some controls and directives for domcom",
   "keywords": [
     "domcom",
     "utilities"

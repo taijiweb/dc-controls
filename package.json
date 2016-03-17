@@ -1,0 +1,45 @@
+{
+  "name": "dc-controls",
+  "version": "0.0.1",
+  "description": "some builtin controls and directives for domcom",
+  "keywords": [
+    "domcom",
+    "utilities"
+  ],
+  "author": "Caoxingming",
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://raw.github.com/taijiweb/dc-controls/master/LICENSE"
+    }
+  ],
+  "homepage": "https://github.com/taijiweb/dc-controls",
+  "bugs": "https://github.com/taijiweb/dc-controls/issues",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/taijiweb/dc-controls.git"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "coffee-script": "1.8.0",
+    "mocha": "1.14.0",
+    "bdd-test-helper": "*",
+    "del": "^2.0.2",
+    "gulp": "~3.8.10",
+    "gulp-cached": "~1.0.1",
+    "gulp-changed": "~1.0.0",
+    "gulp-coffee": "~2.2.0",
+    "gulp-copy": "0.0.2",
+    "gulp-mocha": "~1.1.0",
+    "gulp-plumber": "~0.6.5",
+    "gulp-rename": "~1.2.0",
+    "gulp-util": "~3.0.1"
+  },
+  "engines": {
+    "node": ">=0.8.0"
+  },
+  "scripts": {
+    "dev": "gulp",
+    "test": "mocha test-*.js"
+  }
+}

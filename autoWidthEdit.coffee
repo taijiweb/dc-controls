@@ -35,7 +35,7 @@ exports.setAutoWidth = setAutoWidth = (container, options={}) ->
       width: pipe inputTextWidth$, (w) -> Math.max(Math.floor(w)+spaceWidth, initialWidth)+'px'
       whiteSpace: 'nowrap'
 
-  inputEventHandler = (event, comp) ->
+  inputEventHandler = (event) ->
     event.executeDefault = true
     inputText$ @value
     inputTextWidth$ testSubject.node.getBoundingClientRect().width

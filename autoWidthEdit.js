@@ -48,7 +48,7 @@ exports.setAutoWidth = setAutoWidth = function(container, options) {
       whiteSpace: 'nowrap'
     }
   };
-  inputEventHandler = function(event, comp) {
+  inputEventHandler = function(event) {
     event.executeDefault = true;
     inputText$(this.value);
     inputTextWidth$(testSubject.node.getBoundingClientRect().width);

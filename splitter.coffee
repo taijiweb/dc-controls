@@ -52,7 +52,7 @@ module.exports = (direction) -> (comp) ->
   arrowB = div(arrawBAttr)
 
   splitBar = div(splitBarAttr, span(), arrowA, arrowB)
-  comp.setChildren 1, splitBar, paneB
+  comp.setChildren(1, [splitBar, paneB])
 
   splitBar.bind 'mousedown', (event) -> drag = true
   dc(document).bind 'mouseup', -> drag = false

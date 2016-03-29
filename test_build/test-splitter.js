@@ -24,8 +24,11 @@ describe('splitter', function() {
     expect(comp.node.innerHTML).to.match(/splitbar/);
     children = comp.children;
     expect(children[1].node.getBoundingClientRect().top).to.equal(comp.node.getBoundingClientRect().top);
-    children[1].node.onmousedown();
+    children[1].node.onmousedown({
+      type: 'mousedown'
+    });
     comp.node.onmousemove({
+      type: 'mousemove',
       clientX: 20,
       clientY: 30,
       preventDefault: (function() {}),

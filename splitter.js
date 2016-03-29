@@ -113,7 +113,7 @@ module.exports = function(direction) {
     arrowA = div(arrawAAttr);
     arrowB = div(arrawBAttr);
     splitBar = div(splitBarAttr, span(), arrowA, arrowB);
-    comp.setChildren(1, splitBar, paneB);
+    comp.setChildren(1, [splitBar, paneB]);
     splitBar.bind('mousedown', function(event) {
       return drag = true;
     });

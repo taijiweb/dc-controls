@@ -12,7 +12,7 @@ describe 'accordion', ->
     comp = accordionGroup({}, 'group head', each([1], (item) -> txt(1)), {})
     comp.mount()
     expect(comp.node.innerHTML).to.equal s= '<div class="panel-heading"><h4 class="panel-title"><div class="accordion-toggle"><span>group head</span></div></h4></div><div class="panel-collapse" style="display: none;"><div class="panel-body">1</div></div>'
-    dc.update()
+    comp.render()
     expect(comp.node.innerHTML).to.equal s
 
   it  'should update accordion group 2', ->
@@ -29,13 +29,13 @@ describe 'accordion', ->
     comp = accordion({}, [[{}, 'group head', txt(1), {}]], {})
     comp.mount()
     expect(comp.node.innerHTML).to.equal s='<div class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><div class="accordion-toggle"><span>group head</span></div></h4></div><div class="panel-collapse" style="display: none;"><div class="panel-body">1</div></div></div>'
-    dc.update()
+    comp.render()
     expect(comp.node.innerHTML).to.equal s
 
   it  'should update accordion 2', ->
     comp = accordion({}, [[{}, 'group head', new Tag('span', {}, [each([1], (item) -> txt(1))]), {}]], {})
     comp.mount()
     expect(comp.node.innerHTML).to.equal s='<div class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><div class="accordion-toggle"><span>group head</span></div></h4></div><div class="panel-collapse" style="display: none;"><div class="panel-body"><span>1</span></div></div></div>'
-    dc.update()
+    comp.render()
     expect(comp.node.innerHTML).to.equal s
 

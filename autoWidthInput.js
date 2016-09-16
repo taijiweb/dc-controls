@@ -1,16 +1,18 @@
-var div, extend, extendAttrs, pipe, see, setAutoWidth, text, _ref;
+var div, extendAttrs, pipe, see, setAutoWidth, text, _ref;
 
-_ref = require('domcom'), extend = _ref.extend, see = _ref.see, pipe = _ref.pipe, text = _ref.text, div = _ref.div, extendAttrs = _ref.extendAttrs;
+_ref = require('domcom'), see = _ref.see, pipe = _ref.pipe, text = _ref.text, div = _ref.div, extendAttrs = _ref.extendAttrs;
 
 exports.setAutoWidth = setAutoWidth = function(container, options) {
-  var initialWidth, inputAttrs, inputComponent, inputEventHandler, inputEvents, inputText$, inputTextWidth$, spaceWidth, testSubject, testSubjectStyle;
+  var adjustment, inputAttrs, inputComponent, inputEventHandler, inputEvents, inputText$, inputTextWidth$, maxWidth, minWidth, spaceWidth, testSubject, testSubjectStyle;
   if (options == null) {
     options = {};
   }
-  initialWidth = options.initialWidth || 48;
-  spaceWidth = options.spaceWidth || 40;
-  inputTextWidth$ = see(initialWidth);
-  inputEvents = options.inputEvents || "onkeydown";
+  minWidth = options.minWidth || 48;
+  maxWidth = options.maxWidth || 200;
+  spaceWidth = options.spaceWidth || 20;
+  adjustment = options.adjustment || 1;
+  inputTextWidth$ = see(minWidth);
+  inputEvents = options.inputEvents || "oninput";
   inputComponent = options.inputComponent || container.children[0];
   inputText$ = see("");
   testSubjectStyle = {
@@ -22,6 +24,7 @@ exports.setAutoWidth = setAutoWidth = function(container, options) {
     display: 'inline-block',
     margin: '0',
     padding: '0',
+    'white-space': 'pre',
     fontSize: function() {
       return container.css('fontSize');
     },
@@ -41,28 +44,24 @@ exports.setAutoWidth = setAutoWidth = function(container, options) {
   }, inputText$);
   inputAttrs = {
     style: {
-      'z-index': '10',
       width: pipe(inputTextWidth$, function(w) {
-        return Math.max(Math.floor(w) + spaceWidth, initialWidth) + 'px';
-      }),
-      whiteSpace: 'nowrap'
+        return Math.min(maxWidth, Math.max(Math.floor(w) * adjustment + spaceWidth, minWidth)) + 'px';
+      })
     }
   };
-  inputEventHandler = function(event) {
-    event.executeDefault = true;
-    inputText$(this.value);
+  inputEventHandler = function(event, node) {
+    inputText$(node.value);
+    testSubject.render();
     inputTextWidth$(testSubject.node.getBoundingClientRect().width);
-    dc.update();
-    return this.focus();
+    return inputComponent.render();
   };
   inputComponent.extendAttrs(inputAttrs);
   inputComponent.bind(inputEvents, inputEventHandler);
-  container.pushChild(testSubject);
-  return container;
+  return container.pushChild(testSubject);
 };
 
-exports.autoWidthEdit = function(attrs, inputAttrs, options) {
-  var component, inputComp;
-  component = div(attrs, inputComp = text());
+exports.autoWidthInput = function(attrs, inputAttrs, options) {
+  var component;
+  component = div(attrs, text());
   return setAutoWidth(component, options);
 };

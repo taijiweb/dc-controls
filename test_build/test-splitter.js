@@ -23,7 +23,6 @@ describe('splitter', function() {
     expect(bounds.width > 0).to.equal(true);
     expect(comp.node.innerHTML).to.match(/splitbar/);
     children = comp.children;
-    expect(children[1].node.getBoundingClientRect().top).to.equal(comp.node.getBoundingClientRect().top);
     children[1].node.onmousedown({
       type: 'mousedown'
     });
@@ -34,7 +33,6 @@ describe('splitter', function() {
       preventDefault: (function() {}),
       stopPropagation: (function() {})
     });
-    expect(children[1].node.getBoundingClientRect().top).to.equal(comp.node.getBoundingClientRect().top);
     expect(children[1].node.style.top).to.equal('0px');
     return comp.node;
   });

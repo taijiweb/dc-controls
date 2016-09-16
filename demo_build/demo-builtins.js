@@ -25,11 +25,5 @@ exports.demoCombo = function() {
     }
   }, a_x$, 'a b'.split(' '));
   comp = list(combo2, combo1);
-  combo1.on('update', function() {
-    return dc.update();
-  });
-  combo2.on('update', function() {
-    return dc.update();
-  });
   return comp;
 };

@@ -69,15 +69,15 @@ module.exports = function(direction) {
       },
       onmouseover: function() {
         arrowAHovering = true;
-        return dc.update();
+        return comp.render();
       },
       onmouseleave: function() {
         arrowAHovering = false;
-        return dc.update();
+        return comp.render();
       },
       onclick: function(e) {
         pos = minAWidth;
-        return dc.update();
+        return comp.render();
       },
       $show: function() {
         return pos > minAWidth;
@@ -96,15 +96,15 @@ module.exports = function(direction) {
       },
       onmouseover: function() {
         arrowBHovering = true;
-        return dc.update();
+        return comp.render();
       },
       onmouseleave: function() {
         arrowBHovering = false;
-        return dc.update();
+        return comp.render();
       },
       onclick: function(e) {
         pos = getSize() - minBWidth;
-        return dc.update();
+        return comp.render();
       },
       $show: function() {
         return getSize() - pos > minBWidth;
@@ -121,7 +121,7 @@ module.exports = function(direction) {
       return drag = false;
     });
     comp.bind('mousemove', function(event) {
-      var bounds, pencent, w;
+      var bounds, w;
       event.continuePropagation = true;
       event.executeDefault = true;
       if (!drag) {
@@ -132,8 +132,8 @@ module.exports = function(direction) {
       bounds = comp.node.getBoundingClientRect();
       size = w = bounds[right] - bounds[left];
       pos = Math.max(event[clientX] - bounds[left], 0);
-      pencent = pos / w;
-      return dc.update();
+      percent = pos / w;
+      return comp.render();
     });
     paneA.css(pairListDict('position', 'absolute', width, (function() {
       return pos + 'px';
@@ -156,7 +156,7 @@ module.exports = function(direction) {
       } else if (w - pos < minBWidth) {
         pos = w - minBWidth;
       }
-      return dc.update();
+      return comp.render();
     });
     return comp;
   };

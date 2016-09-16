@@ -6,17 +6,17 @@ extend = require('extend')
 {each, div, h4, a, span, img, extendAttrs, Component} = require('domcom')
 
 module.exports = exports = accordion = (attrs, accordionGroupList, options) ->
-  attrs = extendAttrs {class:"panel-group"}, attrs  or {}
-  accordionOptions = options or {}
+  attrs = extendAttrs {class:"panel-group"}, attrs  || {}
+  accordionOptions = options || {}
   comp = div(attrs, each(accordionGroupList, (group, index) ->
       [groupAttrs, heading, content, groupOptions] = group
-      groupOptions = groupOptions or {}
+      groupOptions = groupOptions || {}
       groupOptions.toggleOpen = ->
         groupOptions.opened = !groupOptions.opened
-        if accordionOptions.closeOthers and groupOptions.opened
+        if accordionOptions.closeOthers && groupOptions.opened
           for group2, i in accordionGroupList
             if i!=index then group2[3].opened = false
-        dc.update()
+        comp.render()
       accordionGroup(groupAttrs, heading, content, groupOptions)
     )
   )

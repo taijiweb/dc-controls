@@ -1,4 +1,4 @@
-{autoWidthEdit} = require('dc-controls/autoWidthEdit')
+{autoWidthInput} = require('dc-controls/autoWidthInput')
 
 module.exports = ->
-  autoWidthEdit()
+  autoWidthInput()

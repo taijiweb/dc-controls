@@ -6,7 +6,7 @@ module.exports = (direction) -> (comp) ->
   dc.directives $show: dc.$show
 
   props = comp.props
-  direction = direction or 'vertical'
+  direction = direction || 'vertical'
 
   if direction == 'vertical'
     left = "top"; right = "bottom"; width = "height"; clientX = "clientY"; splitbarClass =  "splitbarH"; buttonClass = "splitbuttonH"; cursor = "s-resize"
@@ -15,11 +15,11 @@ module.exports = (direction) -> (comp) ->
 
   pos = 200; percent = 0.5; size = null; drag = false;
 
-  getSize = -> size or 600
+  getSize = -> size || 600
 
   children = comp.children
   paneA = children[0]; paneB = children[1]
-  minAWidth = props.minAWidth or 0; minBWidth = props.minBWidth or 0
+  minAWidth = props.minAWidth || 0; minBWidth = props.minBWidth || 0
   splitBarAttr = {
     "class": splitbarClass,  unselectable: "on",
     style: splitBarAttrCss = {
@@ -33,9 +33,9 @@ module.exports = (direction) -> (comp) ->
     "class": classFn(buttonClass, {'inactive': -> arrowAHovering}),
     unselectable: "on",
     style: {cursor: 'pointer'}
-    onmouseover: -> arrowAHovering = true; dc.update()
-    onmouseleave: -> arrowAHovering = false; dc.update()
-    onclick: (e) -> pos = minAWidth; dc.update()
+    onmouseover: -> arrowAHovering = true; comp.render()
+    onmouseleave: -> arrowAHovering = false; comp.render()
+    onclick: (e) -> pos = minAWidth; comp.render()
     $show: -> pos > minAWidth
   }
   arrowBHovering = false
@@ -43,9 +43,9 @@ module.exports = (direction) -> (comp) ->
     "class": classFn(buttonClass+' invert', {'inactive': -> arrowBHovering}),
     unselectable: "on"
     style:{cursor: 'pointer'}
-    onmouseover: -> arrowBHovering = true; dc.update()
-    onmouseleave: -> arrowBHovering = false; dc.update()
-    onclick: (e) -> pos = getSize()-minBWidth; dc.update()
+    onmouseover: -> arrowBHovering = true; comp.render()
+    onmouseleave: -> arrowBHovering = false; comp.render()
+    onclick: (e) -> pos = getSize()-minBWidth; comp.render()
     $show: -> getSize()-pos>minBWidth
   }
   arrowA = div(arrawAAttr)
@@ -65,8 +65,8 @@ module.exports = (direction) -> (comp) ->
     bounds = comp.node.getBoundingClientRect()
     size = w = bounds[right] - bounds[left]
     pos = Math.max(event[clientX] - bounds[left], 0)
-    pencent = pos/w
-    dc.update()
+    percent = pos/w
+    comp.render()
 
   paneA.css pairListDict('position', 'absolute', width, (-> pos+'px'))
   paneB.css pairListDict('position', 'absolute', left, (-> (pos+barsize)+'px'), width, (-> getSize()-(pos+barsize)+'px') )
@@ -82,6 +82,6 @@ module.exports = (direction) -> (comp) ->
       pos = minAWidth
     else if w-pos < minBWidth
       pos = w-minBWidth
-    dc.update()
+    comp.render()
 
   comp

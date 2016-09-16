@@ -21,27 +21,27 @@ exports.combobox = combobox = function(attrs, modelValue, valueList, direction) 
             border: "1px solid blue",
             "min-width": "40px"
           },
-          onclick: (function() {
+          onclick: function() {
             modelValue(item);
-            return dc.update();
-          })
+            return comp.render();
+          }
         }, item);
       })(item));
     }
     return _results;
   })();
   attrs = extendAttrs(attrs, {
-    onmouseleave: (function() {
+    onmouseleave: function() {
       showingItems(false);
-      return dc.update();
-    })
+      return comp.render();
+    }
   });
   return comp = div(attrs, input({
     $model: modelValue,
-    onmouseenter: (function() {
+    onmouseenter: function() {
       showingItems(true);
-      return dc.update();
-    })
+      return comp.render();
+    }
   }), div({
     style: {
       display: function() {

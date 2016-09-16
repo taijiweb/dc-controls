@@ -58,16 +58,17 @@ module.exports = function(options, template) {
   dlg.open = function() {
     openCallback && openCallback();
     opened(true);
-    return dc.update();
+    return dlg.render();
   };
   closeCallback = options.closeCallback;
   dlg.close = function() {
     opened(false);
-    dc.update();
+    dlg.render();
+    dc.clean();
     return closeCallback && closeCallback();
   };
   if (options.escClose) {
-    dlg.on('onMount', function() {
+    dlg.on('willMount', function() {
       var escHandler;
       escHandler = function(event) {
         var esc;
@@ -78,7 +79,7 @@ module.exports = function(options, template) {
       };
       return document.body.addEventListener('keydown', escHandler);
     });
-    dlg.on('onUnmount', function() {
+    dlg.on('willUnmount', function() {
       return document.body.removeEventListener('keydown', escHandler);
     });
   }

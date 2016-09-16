@@ -29,7 +29,7 @@ module.exports = exports = accordion = function(attrs, accordionGroupList, optio
           }
         }
       }
-      return dc.update();
+      return comp.render();
     };
     return accordionGroup(groupAttrs, heading, content, groupOptions);
   }));

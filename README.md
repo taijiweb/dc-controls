@@ -1,7 +1,7 @@
 # dc-controls
   some controls and directives for domcom
 
-  accordion, autoWidthEdit, blink, combo, dialog, splitter, triangle
+  accordion, autoWidthInput, blink, combo, dialog, splitter, triangle
 
 
 ## LICENSE

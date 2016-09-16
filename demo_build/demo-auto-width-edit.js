@@ -1,7 +1,7 @@
-var autoWidthEdit;
+var autoWidthInput;
 
-autoWidthEdit = require('dc-controls/autoWidthEdit').autoWidthEdit;
+autoWidthInput = require('dc-controls/autoWidthInput').autoWidthInput;
 
 module.exports = function() {
-  return autoWidthEdit();
+  return autoWidthInput();
 };

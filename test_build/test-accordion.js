@@ -14,7 +14,7 @@ describe('accordion', function() {
     }), {});
     comp.mount();
     expect(comp.node.innerHTML).to.equal(s = '<div class="panel-heading"><h4 class="panel-title"><div class="accordion-toggle"><span>group head</span></div></h4></div><div class="panel-collapse" style="display: none;"><div class="panel-body">1</div></div>');
-    dc.update();
+    comp.render();
     return expect(comp.node.innerHTML).to.equal(s);
   });
   it('should update accordion group 2', function() {
@@ -46,7 +46,7 @@ describe('accordion', function() {
     comp = accordion({}, [[{}, 'group head', txt(1), {}]], {});
     comp.mount();
     expect(comp.node.innerHTML).to.equal(s = '<div class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><div class="accordion-toggle"><span>group head</span></div></h4></div><div class="panel-collapse" style="display: none;"><div class="panel-body">1</div></div></div>');
-    dc.update();
+    comp.render();
     return expect(comp.node.innerHTML).to.equal(s);
   });
   return it('should update accordion 2', function() {
@@ -62,7 +62,7 @@ describe('accordion', function() {
     ], {});
     comp.mount();
     expect(comp.node.innerHTML).to.equal(s = '<div class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><div class="accordion-toggle"><span>group head</span></div></h4></div><div class="panel-collapse" style="display: none;"><div class="panel-body"><span>1</span></div></div></div>');
-    dc.update();
+    comp.render();
     return expect(comp.node.innerHTML).to.equal(s);
   });
 });
